@@ -7,3 +7,20 @@ export async function createUser(userData) {
     );
     return response.data;
 }
+
+export async function fetchUserInfo() {
+    const response = await apiClient.get(
+        '/api/usuario/infos'
+    );
+
+    return response.data;
+}
+
+export async function updateUser(userId, userData) {
+    const response = await apiClient.patch(
+        `/api/usuario/${userId}`,
+        userData
+    );
+
+    return response.data;
+}

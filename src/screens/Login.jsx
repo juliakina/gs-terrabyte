@@ -4,11 +4,15 @@ import { colors } from '../constants/colors';
 import { CustomInput } from '../components/CustomInput';
 import { PrimaryButton } from '../components/PrimaryButton';
 import { loginUser } from '../services/authService';
+import { setAuthToken } from '../api/apiClient';
+import { useUser } from '../context/UserContext';
+import { fetchUserInfo } from '../services/userService';
 
 export default function Login({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const { setUserData } = useUser();
 
     async function handleLogin() {
         if (!email.trim() || !password.trim()) {
@@ -22,7 +26,16 @@ export default function Login({ navigation }) {
         try {
             setIsLoading(true);
 
-            await loginUser(email, password);
+            const authData = await loginUser(
+                email,
+                password
+            );
+
+            setAuthToken(authData.accessToken);
+
+            const user = await fetchUserInfo();
+
+            setUserData(user);
 
             navigation.replace('Drawer');
         } catch (error) {

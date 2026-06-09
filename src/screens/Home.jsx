@@ -5,15 +5,31 @@ import { AppFooter } from '../components/AppFooter';
 import { ServiceCard } from '../components/ServiceCard';
 import { TerrainCard } from '../components/TerrainCard';
 import { colors } from '../constants/colors';
+import { useEffect, useState } from 'react';
+import { fetchUserInfo } from '../services/userService';
 
 export default function Home({ navigation }) {
     const terrains = [];
+    const [userData, setUserData] = useState(null);
+
+    useEffect(() => {
+        loadUserInfo();
+    }, []);
+
+    async function loadUserInfo() {
+        try {
+            const data = await fetchUserInfo();
+
+            setUserData(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <View style={styles.container}>
             <AppHeader
                 navigation={navigation}
-                profileImage={null}
             />
 
             <ScrollView
@@ -37,7 +53,7 @@ export default function Home({ navigation }) {
                         />
 
                         <Text style={styles.emptyTitle}>
-                            Ops! Nenhum terreno cadastrado :C
+                            Ops! Nenhum terreno cadastrado...
                         </Text>
 
                         <Text style={styles.emptyText}>

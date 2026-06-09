@@ -1,14 +1,19 @@
 import { Image, SafeAreaView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { DrawerActions } from '@react-navigation/native';
-
 import { colors } from '../constants/colors';
+import { DEFAULT_AVATAR_ID, getAvatarById } from '../constants/avatarOptions';
+import { useUser } from '../context/UserContext';
 
 export function AppHeader({
     navigation,
-    profileImage = null,
-    onProfilePress,
 }) {
+    const { userData } = useUser();
+
+    const currentAvatar = getAvatarById(
+        userData?.urlImg || DEFAULT_AVATAR_ID
+    );
+
     function handleOpenDrawer() {
         navigation.dispatch(
             DrawerActions.openDrawer()
@@ -30,30 +35,20 @@ export function AppHeader({
                 </TouchableOpacity>
 
                 <Image
-                    source={require('../../assets/logo.png')}
+                    source={require('../../assets/logo-horizontal.png')}
                     style={styles.logo}
                     resizeMode="contain"
                 />
 
-                <TouchableOpacity
-                    style={styles.profileButton}
-                    onPress={onProfilePress}
-                >
-                    {profileImage ? (
-                        <Image
-                            source={{ uri: profileImage }}
-                            style={styles.avatar}
+                <View>
+                    <View style={styles.avatarPlaceholder}>
+                        <Ionicons
+                            name={currentAvatar.icon}
+                            size={24}
+                            color={currentAvatar.color}
                         />
-                    ) : (
-                        <View style={styles.avatarPlaceholder}>
-                            <Ionicons
-                                name="person"
-                                size={26}
-                                color={colors.white}
-                            />
-                        </View>
-                    )}
-                </TouchableOpacity>
+                    </View>
+                </View>
             </View>
         </SafeAreaView>
     );
@@ -81,26 +76,17 @@ const styles = StyleSheet.create({
     },
 
     logo: {
-        width: 120,
-        height: 80,
-    },
-
-    profileButton: {
-        width: 50,
-        alignItems: 'flex-end',
-    },
-
-    avatar: {
-        width: 46,
-        height: 46,
-        borderRadius: 23,
+        width: 160,
+        marginRight: 10,
     },
 
     avatarPlaceholder: {
         width: 46,
         height: 46,
         borderRadius: 23,
-        backgroundColor: colors.primary,
+        backgroundColor: colors.white,
+        borderWidth: 1,
+        borderColor: colors.border,
         justifyContent: 'center',
         alignItems: 'center',
     },

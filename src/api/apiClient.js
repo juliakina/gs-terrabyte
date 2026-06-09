@@ -7,3 +7,7 @@ export const apiClient = axios.create({
         'Content-Type': 'application/json',
     },
 });
+
+export function setAuthToken(accessToken) {
+    apiClient.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+}

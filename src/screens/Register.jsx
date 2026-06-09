@@ -4,6 +4,7 @@ import { colors } from '../constants/colors';
 import { CustomInput } from '../components/CustomInput';
 import { PrimaryButton } from '../components/PrimaryButton';
 import { createUser } from '../services/userService';
+import { DEFAULT_AVATAR_ID } from '../constants/avatarOptions';
 
 export default function Register({ navigation }) {
     const [name, setName] = useState('');
@@ -39,6 +40,7 @@ export default function Register({ navigation }) {
                 sexo: gender,
                 email,
                 senha: password,
+                urlImg: DEFAULT_AVATAR_ID,
             });
 
             Alert.alert(
