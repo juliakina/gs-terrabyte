@@ -7,6 +7,7 @@ import { loginUser } from '../services/authService';
 import { setAuthToken } from '../api/apiClient';
 import { useUser } from '../context/UserContext';
 import { fetchUserInfo } from '../services/userService';
+import { DEFAULT_AVATAR_ID } from '../constants/avatarOptions';
 
 export default function Login({ navigation }) {
     const [email, setEmail] = useState('');
@@ -35,7 +36,10 @@ export default function Login({ navigation }) {
 
             const user = await fetchUserInfo();
 
-            setUserData(user);
+            setUserData({
+                ...user,
+                urlImg: user.urlImg || DEFAULT_AVATAR_ID,
+            });
 
             navigation.replace('Drawer');
         } catch (error) {

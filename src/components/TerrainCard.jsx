@@ -1,10 +1,11 @@
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+
 import { colors } from '../constants/colors';
 
-export function ServiceCard({
-    title,
-    iconName,
+export function TerrainCard({
+    name,
+    zipCode,
     onPress,
 }) {
     return (
@@ -13,49 +14,80 @@ export function ServiceCard({
             onPress={onPress}
             activeOpacity={0.8}
         >
-            <Ionicons
-                name={iconName}
-                size={34}
-                color={colors.white}
-            />
+            <View style={styles.leftContent}>
+                <Ionicons
+                    name="map-outline"
+                    size={24}
+                    color={colors.primary}
+                />
 
-            <Text style={styles.title}>
-                {title}
-            </Text>
+                <View style={styles.textContainer}>
+                    <Text
+                        style={styles.name}
+                        numberOfLines={1}
+                    >
+                        {name}
+                    </Text>
+
+                    <Text style={styles.zipCode}>
+                        CEP: {zipCode}
+                    </Text>
+                </View>
+            </View>
+
+            <Ionicons
+                name="chevron-forward"
+                size={24}
+                color={colors.primary}
+            />
         </TouchableOpacity>
     );
 }
 
 const styles = StyleSheet.create({
     card: {
-        width: '48%',
-        height: 130,
-
-        backgroundColor: colors.serviceCard,
-
+        backgroundColor: colors.white,
         borderRadius: 18,
+        borderWidth: 1,
+        borderColor: colors.border,
 
-        justifyContent: 'center',
-        alignItems: 'center',
-
+        padding: 16,
         marginBottom: 14,
 
-        shadowColor: colors.shadow,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+
+        shadowColor: '#000',
         shadowOffset: {
             width: 0,
             height: 2,
         },
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.08,
         shadowRadius: 4,
         elevation: 3,
     },
 
-    title: {
-        color: colors.white,
+    leftContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flex: 1,
+    },
+
+    textContainer: {
+        marginLeft: 12,
+        flex: 1,
+    },
+
+    name: {
         fontSize: 16,
         fontWeight: '700',
-        textAlign: 'center',
-        marginTop: 10,
-        paddingHorizontal: 8,
+        color: colors.text,
+    },
+
+    zipCode: {
+        fontSize: 13,
+        color: colors.mutedText,
+        marginTop: 2,
     },
 });

@@ -4,16 +4,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../constants/colors';
 import { DEFAULT_AVATAR_ID, avatarOptions, getAvatarById } from '../constants/avatarOptions';
 import { useUser } from '../context/UserContext';
-
+import { updateUser } from '../services/userService';
 import { AppHeader } from '../components/AppHeader';
 import { AppFooter } from '../components/AppFooter';
 import { CustomInput } from '../components/CustomInput';
 import { PrimaryButton } from '../components/PrimaryButton';
-
-import {
-    fetchUserInfo,
-    updateUser,
-} from '../services/userService';
 
 export default function Account({ navigation }) {
     const [userId, setUserId] = useState('');
@@ -37,22 +32,6 @@ export default function Account({ navigation }) {
             userData.urlImg || DEFAULT_AVATAR_ID
         );
     }, [userData]);
-
-    async function loadUserInfo() {
-        try {
-            const userData = await fetchUserInfo();
-
-            setUserId(userData.id);
-            setName(userData.nome || '');
-            setPhone(userData.telefone || '');
-            setSelectedAvatar(userData.urlImg || DEFAULT_AVATAR_ID);
-        } catch (error) {
-            Alert.alert(
-                'Erro',
-                'Não foi possível carregar os dados da conta.'
-            );
-        }
-    }
 
     async function handleUpdateAccount() {
         if (!phone.trim() || !password.trim()) {
@@ -82,6 +61,8 @@ export default function Account({ navigation }) {
 
             setUserData({
                 ...userData,
+                id: userId,
+                nome: name,
                 telefone: phone,
                 urlImg: selectedAvatar,
             });
@@ -256,6 +237,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: colors.border,
         marginBottom: 20,
+        marginTop: 15,
     },
 
     avatarPreview: {

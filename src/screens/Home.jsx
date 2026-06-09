@@ -1,36 +1,40 @@
+import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+
 import { AppHeader } from '../components/AppHeader';
 import { AppFooter } from '../components/AppFooter';
 import { ServiceCard } from '../components/ServiceCard';
 import { TerrainCard } from '../components/TerrainCard';
 import { colors } from '../constants/colors';
-import { useEffect, useState } from 'react';
-import { fetchUserInfo } from '../services/userService';
+import { fetchAddressList } from '../services/addressService';
 
 export default function Home({ navigation }) {
-    const terrains = [];
-    const [userData, setUserData] = useState(null);
+    const [terrains, setTerrains] = useState([]);
 
     useEffect(() => {
-        loadUserInfo();
-    }, []);
+        const unsubscribe = navigation.addListener(
+            'focus',
+            loadTerrains
+        );
 
-    async function loadUserInfo() {
+        return unsubscribe;
+    }, [navigation]);
+
+    async function loadTerrains() {
         try {
-            const data = await fetchUserInfo();
+            const data = await fetchAddressList();
 
-            setUserData(data);
+            setTerrains(data);
         } catch (error) {
-            console.log(error);
+            console.log(error.response?.data);
+            setTerrains([]);
         }
     }
 
     return (
         <View style={styles.container}>
-            <AppHeader
-                navigation={navigation}
-            />
+            <AppHeader navigation={navigation} />
 
             <ScrollView
                 contentContainerStyle={styles.content}
@@ -43,6 +47,21 @@ export default function Home({ navigation }) {
                         Terrenos
                     </Text>
                 </View>
+
+                <TouchableOpacity
+                    style={styles.addButton}
+                    onPress={() => navigation.navigate('CreateTerrain')}
+                >
+                    <Ionicons
+                        name="add"
+                        size={20}
+                        color={colors.white}
+                    />
+
+                    <Text style={styles.addButtonText}>
+                        Adicionar Terreno
+                    </Text>
+                </TouchableOpacity>
 
                 {terrains.length === 0 ? (
                     <View style={styles.emptyCard}>
@@ -59,23 +78,18 @@ export default function Home({ navigation }) {
                         <Text style={styles.emptyText}>
                             Cadastre seu primeiro terreno para começar suas análises.
                         </Text>
-
-                        <TouchableOpacity
-                            style={styles.addButton}
-                            onPress={() => navigation.navigate('Terrain')}
-                        >
-                            <Text style={styles.addButtonText}>
-                                Adicionar terreno
-                            </Text>
-                        </TouchableOpacity>
                     </View>
                 ) : (
                     terrains.map((terrain) => (
                         <TerrainCard
                             key={terrain.id}
-                            name={terrain.name}
-                            city={terrain.city}
-                            onPress={() => navigation.navigate('Terrain')}
+                            name={terrain.nome}
+                            zipCode={terrain.cep}
+                            onPress={() =>
+                                navigation.navigate('TerrainDetails', {
+                                    terrainId: terrain.id,
+                                })
+                            }
                         />
                     ))
                 )}
@@ -110,9 +124,7 @@ export default function Home({ navigation }) {
                     <ServiceCard
                         title="Análise de Compatibilidade"
                         iconName="analytics-outline"
-                        onPress={() =>
-                            navigation.navigate('CompatibilityAnalysis')
-                        }
+                        onPress={() => navigation.navigate('CompatibilityAnalysis')}
                     />
                 </View>
             </ScrollView>
@@ -185,6 +197,11 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         paddingVertical: 12,
         paddingHorizontal: 18,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 6,
+        marginBottom: 18,
     },
 
     addButtonText: {

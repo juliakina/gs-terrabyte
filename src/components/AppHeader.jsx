@@ -40,7 +40,10 @@ export function AppHeader({
                     resizeMode="contain"
                 />
 
-                <View>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Account')}
+                    activeOpacity={0.8}
+                >
                     <View style={styles.avatarPlaceholder}>
                         <Ionicons
                             name={currentAvatar.icon}
@@ -48,7 +51,7 @@ export function AppHeader({
                             color={currentAvatar.color}
                         />
                     </View>
-                </View>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     );
@@ -89,5 +92,14 @@ const styles = StyleSheet.create({
         borderColor: colors.border,
         justifyContent: 'center',
         alignItems: 'center',
+
+        shadowColor: colors.shadow,
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.08,
+        shadowRadius: 2,
+        elevation: 2,
     },
 });

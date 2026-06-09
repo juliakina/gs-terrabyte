@@ -10,7 +10,8 @@ import Planting from '../screens/Planting';
 import Soil from '../screens/Soil';
 import Pesticide from '../screens/Pesticide';
 import CompatibilityAnalysis from '../screens/CompatibilityAnalysis';
-
+import CreateTerrain from '../screens/CreateTerrain';
+import TerrainDetails from '../screens/TerrainDetails';
 
 const Drawer = createDrawerNavigator();
 
@@ -109,6 +110,26 @@ export default function DrawerRoutes() {
                     drawerIcon: ({ color, size }) => (
                         <Ionicons name="analytics-outline" size={size} color={color} />
                     ),
+                }}
+            />
+
+            <Drawer.Screen
+                name="CreateTerrain"
+                component={CreateTerrain}
+                options={{
+                    drawerItemStyle: {
+                        display: 'none',
+                    },
+                }}
+            />
+
+            <Drawer.Screen
+                name="TerrainDetails"
+                component={TerrainDetails}
+                options={{
+                    drawerItemStyle: {
+                        display: 'none',
+                    },
                 }}
             />
         </Drawer.Navigator>
