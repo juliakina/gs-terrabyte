@@ -1,8 +1,9 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Ionicons } from '@expo/vector-icons';
-
+import { View, Alert } from 'react-native';
+import { clearAuthToken } from '../api/apiClient';
+import { useUser } from '../context/UserContext';
 import { colors } from '../constants/colors';
-
 import Home from '../screens/Home';
 import Account from '../screens/Account';
 import Terrain from '../screens/Terrain';
@@ -18,9 +19,33 @@ import PesticidePlantings from '../screens/PesticidePlantings';
 import CreateAnalysis from '../screens/CreateAnalysis';
 import AnalysisDetails from '../screens/AnalysisDetails';
 
+
 const Drawer = createDrawerNavigator();
 
 export default function DrawerRoutes() {
+    const { setUserData } = useUser();
+
+    function handleLogout(navigation) {
+        Alert.alert(
+            'Sair',
+            'Deseja realmente encerrar a sessão?',
+            [
+                {
+                    text: 'Cancelar',
+                    style: 'cancel',
+                },
+                {
+                    text: 'Sair',
+                    onPress: () => {
+                        clearAuthToken();
+                        setUserData(null);
+
+                        navigation.replace('Login');
+                    },
+                },
+            ]
+        );
+    }
     return (
         <Drawer.Navigator
             screenOptions={{
@@ -186,6 +211,27 @@ export default function DrawerRoutes() {
                         display: 'none',
                     },
                 }}
+            />
+
+            <Drawer.Screen
+                name="Logout"
+                component={View}
+                options={{
+                    drawerLabel: 'Sair',
+                    drawerIcon: ({ color, size }) => (
+                        <Ionicons
+                            name="log-out-outline"
+                            size={size}
+                            color={color}
+                        />
+                    ),
+                }}
+                listeners={({ navigation }) => ({
+                    drawerItemPress: (event) => {
+                        event.preventDefault();
+                        handleLogout(navigation);
+                    },
+                })}
             />
         </Drawer.Navigator>
     );

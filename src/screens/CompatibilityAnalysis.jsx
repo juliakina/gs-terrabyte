@@ -49,7 +49,7 @@ export default function CompatibilityAnalysis({ navigation }) {
                     <View style={styles.titleIndicator} />
 
                     <View>
-                        <Text style={styles.title}>Análises</Text>
+                        <Text style={styles.title}>Análises de Compatibilidade</Text>
                         <Text style={styles.subtitle}>
                             Consulte ou realize uma análise de compatibilidade
                         </Text>
@@ -62,7 +62,7 @@ export default function CompatibilityAnalysis({ navigation }) {
                     activeOpacity={0.8}
                 >
                     <Ionicons name="add" size={22} color={colors.white} />
-                    <Text style={styles.addButtonText}>Nova análise</Text>
+                    <Text style={styles.addButtonText}>Nova Análise</Text>
                 </TouchableOpacity>
 
                 {isLoading ? (
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 28,
+        fontSize: 25,
         fontWeight: '800',
         color: colors.text,
     },
