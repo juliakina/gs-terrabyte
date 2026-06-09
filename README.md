@@ -207,7 +207,7 @@ npx expo install @expo/vector-icons
 
 Confira a demonstração completa do aplicativo no YouTube!
 
-➡️[Clique aqui para assistir!](https://youtu.be/)
+➡️[Clique aqui para assistir!](https://youtu.be/eUGbpgh_hTw)
 
 Neste vídeo é possível visualizar o fluxo completo da aplicação, incluindo cadastro, login, gerenciamento de terrenos, consultas agrícolas e geração de análises de compatibilidade.
 
