@@ -1,22 +1,10 @@
 import { useEffect, useState } from 'react';
-import {
-    ActivityIndicator,
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
-
+import { ActivityIndicator, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { colors } from '../constants/colors';
 import { AppHeader } from '../components/AppHeader';
 import { AppFooter } from '../components/AppFooter';
 import { PesticideCard } from '../components/PesticideCard';
-import {
-    fetchPesticideList,
-    fetchPesticidesByType,
-} from '../services/pesticideService';
+import { fetchPesticideList, fetchPesticidesByType } from '../services/pesticideService';
 
 const filterOptions = [
     {
@@ -66,7 +54,6 @@ export default function Pesticide({ navigation }) {
     return (
         <SafeAreaView style={styles.safeArea}>
             <AppHeader navigation={navigation} />
-
             <ScrollView
                 contentContainerStyle={styles.content}
                 showsVerticalScrollIndicator={false}
@@ -145,7 +132,6 @@ export default function Pesticide({ navigation }) {
                     ))
                 )}
             </ScrollView>
-
             <AppFooter />
         </SafeAreaView>
     );

@@ -5,9 +5,7 @@ import { colors } from '../constants/colors';
 import { DEFAULT_AVATAR_ID, getAvatarById } from '../constants/avatarOptions';
 import { useUser } from '../context/UserContext';
 
-export function AppHeader({
-    navigation,
-}) {
+export function AppHeader({ navigation }) {
     const { userData } = useUser();
 
     const currentAvatar = getAvatarById(
@@ -15,9 +13,7 @@ export function AppHeader({
     );
 
     function handleOpenDrawer() {
-        navigation.dispatch(
-            DrawerActions.openDrawer()
-        );
+        navigation.dispatch( DrawerActions.openDrawer() );
     }
 
     return (

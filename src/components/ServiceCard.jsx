@@ -14,7 +14,6 @@ export function ServiceCard({ title, iconName, onPress }) {
                 size={34}
                 color={colors.primary}
             />
-
             <Text
                 style={styles.title}
                 numberOfLines={2}
@@ -33,13 +32,10 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         borderWidth: 1,
         borderColor: colors.border,
-
         justifyContent: 'center',
         alignItems: 'center',
-
         paddingHorizontal: 10,
         marginBottom: 14,
-
         shadowColor: colors.shadow,
         shadowOffset: {
             width: 0,

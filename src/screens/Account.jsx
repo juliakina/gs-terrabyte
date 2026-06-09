@@ -20,12 +20,10 @@ export default function Account({ navigation }) {
         useState(DEFAULT_AVATAR_ID);
     const [isLoading, setIsLoading] = useState(false);
     const { userData, setUserData } = useUser();
-
     const currentAvatar = getAvatarById(selectedAvatar);
 
     useEffect(() => {
         if (!userData) return;
-
         setUserId(userData.id);
         setName(userData.nome || '');
         setPhone(userData.telefone || '');
@@ -132,7 +130,6 @@ export default function Account({ navigation }) {
             <AppHeader
                 navigation={navigation}
             />
-
             <KeyboardAvoidingView
                 style={styles.keyboardView}
                 behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -240,7 +237,6 @@ export default function Account({ navigation }) {
                     </View>
                 </ScrollView>
             </KeyboardAvoidingView>
-
             <AppFooter />
         </SafeAreaView>
     );

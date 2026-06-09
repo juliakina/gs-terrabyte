@@ -6,16 +6,14 @@ export function AnalysisCard({ addressName, plantingName, riskLevel, onPress }) 
     return (
         <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.8}>
             <View style={styles.leftContent}>
-                <Ionicons name="analytics-outline" size={24} color={colors.primary} />
-
+                <Ionicons name="analytics-outline" size={24} color={colors.primary}/>
                 <View style={styles.textContainer}>
                     <Text style={styles.title}>{plantingName}</Text>
                     <Text style={styles.subtitle}>{addressName}</Text>
                     <Text style={styles.risk}>Risco: {riskLevel}</Text>
                 </View>
             </View>
-
-            <Ionicons name="chevron-forward" size={24} color={colors.primary} />
+            <Ionicons name="chevron-forward" size={24} color={colors.primary}/>
         </TouchableOpacity>
     );
 }

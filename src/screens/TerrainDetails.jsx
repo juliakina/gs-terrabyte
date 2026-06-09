@@ -42,7 +42,6 @@ export default function TerrainDetails({ navigation, route }) {
         return (
             <SafeAreaView style={styles.safeArea}>
                 <AppHeader navigation={navigation} />
-
                 <View style={styles.loadingContainer}>
                     <ActivityIndicator
                         size="large"
@@ -53,7 +52,6 @@ export default function TerrainDetails({ navigation, route }) {
                         Carregando terreno...
                     </Text>
                 </View>
-
                 <AppFooter />
             </SafeAreaView>
         );
@@ -102,7 +100,6 @@ export default function TerrainDetails({ navigation, route }) {
     return (
         <SafeAreaView style={styles.safeArea}>
             <AppHeader navigation={navigation} />
-
             <ScrollView
                 contentContainerStyle={styles.content}
                 showsVerticalScrollIndicator={false}
@@ -219,7 +216,6 @@ export default function TerrainDetails({ navigation, route }) {
                     </Text>
                 </TouchableOpacity>
             </ScrollView>
-
             <AppFooter />
         </SafeAreaView>
     );
@@ -231,7 +227,6 @@ function InfoRow({ label, value }) {
             <Text style={styles.infoLabel}>
                 {label}
             </Text>
-
             <Text style={styles.infoValue}>
                 {value}
             </Text>

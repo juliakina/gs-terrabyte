@@ -7,7 +7,6 @@ export function AppFooter() {
             <Text style={styles.text}>
                 TerraByte © 2026
             </Text>
-
             <Text style={styles.subText}>
                 Agricultura Inteligente
             </Text>

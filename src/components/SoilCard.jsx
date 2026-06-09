@@ -15,12 +15,10 @@ export function SoilCard({ name, onPress }) {
                     size={24}
                     color={colors.primary}
                 />
-
                 <Text style={styles.name}>
                     {name}
                 </Text>
             </View>
-
             <Ionicons
                 name="chevron-forward"
                 size={24}
@@ -42,7 +40,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         shadowColor: colors.shadow,
-        shadowOffset: { width: 0, height: 2 },
+        shadowOffset: { 
+            width: 0,
+            height: 2
+        },
         shadowOpacity: 0.08,
         shadowRadius: 4,
         elevation: 3,

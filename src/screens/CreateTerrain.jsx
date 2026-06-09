@@ -59,7 +59,6 @@ export default function CreateTerrain({ navigation }) {
     return (
         <SafeAreaView style={styles.safeArea}>
             <AppHeader navigation={navigation} />
-
             <KeyboardAvoidingView
                 style={styles.keyboardView}
                 behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -111,7 +110,6 @@ export default function CreateTerrain({ navigation }) {
                     </View>
                 </ScrollView>
             </KeyboardAvoidingView>
-
             <AppFooter />
         </SafeAreaView>
     );

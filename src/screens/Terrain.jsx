@@ -1,15 +1,6 @@
 import { useEffect, useState } from 'react';
-import {
-    ActivityIndicator,
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import { ActivityIndicator, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
 import { colors } from '../constants/colors';
 import { AppHeader } from '../components/AppHeader';
 import { AppFooter } from '../components/AppFooter';
@@ -46,7 +37,6 @@ export default function Terrain({ navigation }) {
     return (
         <SafeAreaView style={styles.safeArea}>
             <AppHeader navigation={navigation} />
-
             <View style={styles.container}>
                 <ScrollView
                     contentContainerStyle={styles.content}
@@ -121,7 +111,6 @@ export default function Terrain({ navigation }) {
                     )}
                 </ScrollView>
             </View>
-
             <AppFooter />
         </SafeAreaView>
     );

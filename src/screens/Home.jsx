@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
 import { AppHeader } from '../components/AppHeader';
 import { AppFooter } from '../components/AppFooter';
 import { ServiceCard } from '../components/ServiceCard';
@@ -35,7 +34,6 @@ export default function Home({ navigation }) {
     return (
         <View style={styles.container}>
             <AppHeader navigation={navigation} />
-
             <ScrollView
                 contentContainerStyle={styles.content}
                 showsVerticalScrollIndicator={false}
@@ -128,7 +126,6 @@ export default function Home({ navigation }) {
                     />
                 </View>
             </ScrollView>
-
             <AppFooter />
         </View>
     );

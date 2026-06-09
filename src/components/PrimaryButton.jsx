@@ -8,7 +8,7 @@ export function PrimaryButton({ title, onPress, disabled = false }) {
             onPress={onPress}
             disabled={disabled}
             activeOpacity={0.8}>
-        <Text style={styles.title}>{title}</Text>
+            <Text style={styles.title}>{title}</Text>
         </TouchableOpacity>
     );
 }
@@ -24,9 +24,11 @@ const styles = StyleSheet.create({
         marginTop: 8,
         width: '100%',
     },
+
     disabled: {
         opacity: 0.6,
     },
+    
     title: {
         color: colors.white,
         fontSize: 16,

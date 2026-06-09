@@ -3,11 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { colors } from '../constants/colors';
 
-export function TerrainCard({
-    name,
-    zipCode,
-    onPress,
-}) {
+export function TerrainCard({ name, zipCode, onPress }) {
     return (
         <TouchableOpacity
             style={styles.card}
@@ -20,7 +16,6 @@ export function TerrainCard({
                     size={24}
                     color={colors.primary}
                 />
-
                 <View style={styles.textContainer}>
                     <Text
                         style={styles.name}
@@ -28,13 +23,11 @@ export function TerrainCard({
                     >
                         {name}
                     </Text>
-
                     <Text style={styles.zipCode}>
                         CEP: {zipCode}
                     </Text>
                 </View>
             </View>
-
             <Ionicons
                 name="chevron-forward"
                 size={24}
@@ -50,14 +43,11 @@ const styles = StyleSheet.create({
         borderRadius: 18,
         borderWidth: 1,
         borderColor: colors.border,
-
         padding: 16,
         marginBottom: 14,
-
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-
         shadowColor: '#000',
         shadowOffset: {
             width: 0,

@@ -1,6 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
 import { colors } from '../constants/colors';
 
 export function PlantingCard({ name, onPress }) {
@@ -16,12 +15,10 @@ export function PlantingCard({ name, onPress }) {
                     size={24}
                     color={colors.primary}
                 />
-
                 <Text style={styles.name}>
                     {name}
                 </Text>
             </View>
-
             <Ionicons
                 name="chevron-forward"
                 size={24}

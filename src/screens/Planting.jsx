@@ -1,13 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-    ActivityIndicator,
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    View,
-} from 'react-native';
-
+import { ActivityIndicator, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { colors } from '../constants/colors';
 import { AppHeader } from '../components/AppHeader';
 import { AppFooter } from '../components/AppFooter';
@@ -44,7 +36,6 @@ export default function Planting({ navigation }) {
     return (
         <SafeAreaView style={styles.safeArea}>
             <AppHeader navigation={navigation} />
-
             <ScrollView
                 contentContainerStyle={styles.content}
                 showsVerticalScrollIndicator={false}
@@ -83,7 +74,6 @@ export default function Planting({ navigation }) {
                     ))
                 )}
             </ScrollView>
-
             <AppFooter />
         </SafeAreaView>
     );

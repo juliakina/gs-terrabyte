@@ -1,16 +1,6 @@
 import { useEffect, useState } from 'react';
-import {
-    ActivityIndicator,
-    Alert,
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import { ActivityIndicator, Alert, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
 import { colors } from '../constants/colors';
 import { AppHeader } from '../components/AppHeader';
 import { AppFooter } from '../components/AppFooter';
@@ -101,7 +91,6 @@ export default function CreateAnalysis({ navigation }) {
     return (
         <SafeAreaView style={styles.safeArea}>
             <AppHeader navigation={navigation} />
-
             <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
                 <View style={styles.titleContainer}>
                     <View style={styles.titleIndicator} />
@@ -146,7 +135,6 @@ export default function CreateAnalysis({ navigation }) {
                     disabled={isSaving}
                 />
             </ScrollView>
-
             <AppFooter />
         </SafeAreaView>
     );

@@ -1,14 +1,6 @@
 import { useEffect, useState } from 'react';
-import {
-    ActivityIndicator,
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    View,
-} from 'react-native';
+import { ActivityIndicator, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
 import { colors } from '../constants/colors';
 import { AppHeader } from '../components/AppHeader';
 import { AppFooter } from '../components/AppFooter';
@@ -50,7 +42,6 @@ export default function PlantingDetails({ navigation, route }) {
         return (
             <SafeAreaView style={styles.safeArea}>
                 <AppHeader navigation={navigation} />
-
                 <View style={styles.loadingContainer}>
                     <ActivityIndicator
                         size="large"
@@ -61,7 +52,6 @@ export default function PlantingDetails({ navigation, route }) {
                         Carregando plantio...
                     </Text>
                 </View>
-
                 <AppFooter />
             </SafeAreaView>
         );
@@ -70,7 +60,6 @@ export default function PlantingDetails({ navigation, route }) {
     return (
         <SafeAreaView style={styles.safeArea}>
             <AppHeader navigation={navigation} />
-
             <ScrollView
                 contentContainerStyle={styles.content}
                 showsVerticalScrollIndicator={false}
@@ -160,7 +149,6 @@ export default function PlantingDetails({ navigation, route }) {
                     </Text>
                 </View>
             </ScrollView>
-
             <AppFooter />
         </SafeAreaView>
     );

@@ -19,7 +19,6 @@ import PesticidePlantings from '../screens/PesticidePlantings';
 import CreateAnalysis from '../screens/CreateAnalysis';
 import AnalysisDetails from '../screens/AnalysisDetails';
 
-
 const Drawer = createDrawerNavigator();
 
 export default function DrawerRoutes() {
@@ -39,13 +38,13 @@ export default function DrawerRoutes() {
                     onPress: () => {
                         clearAuthToken();
                         setUserData(null);
-
                         navigation.replace('Login');
                     },
                 },
             ]
         );
     }
+
     return (
         <Drawer.Navigator
             screenOptions={{
@@ -68,7 +67,11 @@ export default function DrawerRoutes() {
                 options={{
                     drawerLabel: 'Início',
                     drawerIcon: ({ color, size }) => (
-                        <Ionicons name="home-outline" size={size} color={color} />
+                        <Ionicons 
+                            name="home-outline"
+                            size={size}
+                            color={color}
+                        />
                     ),
                 }}
             />
@@ -94,7 +97,11 @@ export default function DrawerRoutes() {
                 options={{
                     drawerLabel: 'Terrenos',
                     drawerIcon: ({ color, size }) => (
-                        <Ionicons name="map-outline" size={size} color={color} />
+                        <Ionicons 
+                            name="map-outline"
+                            size={size}
+                            color={color}
+                        />
                     ),
                 }}
             />
@@ -105,7 +112,11 @@ export default function DrawerRoutes() {
                 options={{
                     drawerLabel: 'Plantios',
                     drawerIcon: ({ color, size }) => (
-                        <Ionicons name="leaf-outline" size={size} color={color} />
+                        <Ionicons 
+                            name="leaf-outline" 
+                            size={size} 
+                            color={color}
+                        />
                     ),
                 }}
             />
@@ -116,7 +127,11 @@ export default function DrawerRoutes() {
                 options={{
                     drawerLabel: 'Solos',
                     drawerIcon: ({ color, size }) => (
-                        <Ionicons name="earth-outline" size={size} color={color} />
+                        <Ionicons 
+                            name="earth-outline"
+                            size={size}
+                            color={color}
+                        />
                     ),
                 }}
             />
@@ -127,7 +142,11 @@ export default function DrawerRoutes() {
                 options={{
                     drawerLabel: 'Defensivos',
                     drawerIcon: ({ color, size }) => (
-                        <Ionicons name="shield-checkmark-outline" size={size} color={color} />
+                        <Ionicons 
+                            name="shield-checkmark-outline" 
+                            size={size} 
+                            color={color} 
+                        />
                     ),
                 }}
             />
@@ -138,7 +157,11 @@ export default function DrawerRoutes() {
                 options={{
                     drawerLabel: 'Análise de Compatibilidade',
                     drawerIcon: ({ color, size }) => (
-                        <Ionicons name="analytics-outline" size={size} color={color} />
+                        <Ionicons 
+                            name="analytics-outline" 
+                            size={size} 
+                            color={color} 
+                        />
                     ),
                 }}
             />

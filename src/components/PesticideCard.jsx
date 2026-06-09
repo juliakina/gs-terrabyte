@@ -1,6 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
 import { colors } from '../constants/colors';
 
 export function PesticideCard({ name, type, onPress }) {
@@ -16,18 +15,15 @@ export function PesticideCard({ name, type, onPress }) {
                     size={24}
                     color={colors.primary}
                 />
-
                 <View>
                     <Text style={styles.name}>
                         {name}
                     </Text>
-
                     <Text style={styles.type}>
                         {type}
                     </Text>
                 </View>
             </View>
-
             <Ionicons
                 name="chevron-forward"
                 size={24}
