@@ -15,6 +15,8 @@ import TerrainDetails from '../screens/TerrainDetails';
 import PlantingDetails from '../screens/PlantingDetails';
 import SoilPlantings from '../screens/SoilPlantings';
 import PesticidePlantings from '../screens/PesticidePlantings';
+import CreateAnalysis from '../screens/CreateAnalysis';
+import AnalysisDetails from '../screens/AnalysisDetails';
 
 const Drawer = createDrawerNavigator();
 
@@ -145,7 +147,7 @@ export default function DrawerRoutes() {
                     },
                 }}
             />
-            
+
             <Drawer.Screen
                 name="SoilPlantings"
                 component={SoilPlantings}
@@ -159,6 +161,26 @@ export default function DrawerRoutes() {
             <Drawer.Screen
                 name="PesticidePlantings"
                 component={PesticidePlantings}
+                options={{
+                    drawerItemStyle: {
+                        display: 'none',
+                    },
+                }}
+            />
+
+            <Drawer.Screen
+                name="CreateAnalysis"
+                component={CreateAnalysis}
+                options={{
+                    drawerItemStyle: {
+                        display: 'none',
+                    },
+                }}
+            />
+
+            <Drawer.Screen
+                name="AnalysisDetails"
+                component={AnalysisDetails}
                 options={{
                     drawerItemStyle: {
                         display: 'none',
