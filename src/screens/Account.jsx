@@ -4,11 +4,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../constants/colors';
 import { DEFAULT_AVATAR_ID, avatarOptions, getAvatarById } from '../constants/avatarOptions';
 import { useUser } from '../context/UserContext';
-import { updateUser } from '../services/userService';
+import { deleteUser, updateUser } from '../services/userService';
 import { AppHeader } from '../components/AppHeader';
 import { AppFooter } from '../components/AppFooter';
 import { CustomInput } from '../components/CustomInput';
 import { PrimaryButton } from '../components/PrimaryButton';
+import { clearAuthToken } from '../api/apiClient';
 
 export default function Account({ navigation }) {
     const [userId, setUserId] = useState('');
@@ -77,6 +78,49 @@ export default function Account({ navigation }) {
             Alert.alert(
                 'Erro',
                 'Não foi possível atualizar a conta.'
+            );
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+    function handleDeleteAccount() {
+        Alert.alert(
+            'Excluir conta',
+            'Tem certeza que deseja excluir sua conta? Essa ação não pode ser desfeita.',
+            [
+                {
+                    text: 'Cancelar',
+                    style: 'cancel',
+                },
+                {
+                    text: 'Excluir',
+                    style: 'destructive',
+                    onPress: confirmDeleteAccount,
+                },
+            ]
+        );
+    }
+
+    async function confirmDeleteAccount() {
+        try {
+            setIsLoading(true);
+
+            await deleteUser(userId);
+
+            clearAuthToken();
+            setUserData(null);
+
+            Alert.alert(
+                'Conta excluída',
+                'Sua conta foi excluída com sucesso.'
+            );
+
+            navigation.getParent()?.replace('Login');
+        } catch (error) {
+            Alert.alert(
+                'Erro',
+                'Não foi possível excluir a conta.'
             );
         } finally {
             setIsLoading(false);
@@ -178,6 +222,21 @@ export default function Account({ navigation }) {
                             onPress={handleUpdateAccount}
                             disabled={isLoading}
                         />
+                        <TouchableOpacity
+                            style={styles.deleteButton}
+                            onPress={handleDeleteAccount}
+                            activeOpacity={0.8}
+                        >
+                            <Ionicons
+                                name="trash-outline"
+                                size={20}
+                                color={colors.white}
+                            />
+
+                            <Text style={styles.deleteButtonText}>
+                                Excluir conta
+                            </Text>
+                        </TouchableOpacity>
                     </View>
                 </ScrollView>
             </KeyboardAvoidingView>
@@ -298,5 +357,21 @@ const styles = StyleSheet.create({
         marginTop: -8,
         marginBottom: 12,
         marginLeft: 4,
+    },
+    deleteButton: {
+        height: 52,
+        backgroundColor: colors.danger,
+        borderRadius: 14,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 8,
+        marginTop: 14,
+    },
+
+    deleteButtonText: {
+        color: colors.white,
+        fontSize: 15,
+        fontWeight: '700',
     },
 });

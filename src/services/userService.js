@@ -24,3 +24,9 @@ export async function updateUser(userId, userData) {
 
     return response.data;
 }
+
+export async function deleteUser(userId) {
+    await apiClient.delete(
+        `/api/usuario/${userId}`
+    );
+}
