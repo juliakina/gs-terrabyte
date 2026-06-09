@@ -10,7 +10,7 @@ export function AnalysisCard({ addressName, plantingName, riskLevel, onPress }) 
                 <View style={styles.textContainer}>
                     <Text style={styles.title}>{plantingName}</Text>
                     <Text style={styles.subtitle}>{addressName}</Text>
-                    <Text style={styles.risk}>Risco: {riskLevel}</Text>
+                    <Text style={styles.risk}>Compatibilidade: {riskLevel}</Text>
                 </View>
             </View>
             <Ionicons name="chevron-forward" size={24} color={colors.primary}/>
