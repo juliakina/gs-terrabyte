@@ -22,21 +22,9 @@ export default function Login({ navigation }) {
         try {
             setIsLoading(true);
 
-            const authData = await loginUser(
-                email,
-                password
-            );
+            await loginUser(email, password);
 
-            const accessToken =
-                authData.accessToken;
-
-            const refreshToken =
-                authData.refreshToken;
-
-            console.log('Access Token:', accessToken);
-            console.log('Refresh Token:', refreshToken);
-
-            navigation.navigate('Home');
+            navigation.replace('Drawer');
         } catch (error) {
             Alert.alert(
                 'Erro',
@@ -92,11 +80,7 @@ export default function Login({ navigation }) {
                         />
 
                         <PrimaryButton
-                            title={
-                                isLoading
-                                    ? 'Entrando...'
-                                    : 'Entrar'
-                            }
+                            title={isLoading ? 'Entrando...' : 'Entrar'}
                             onPress={handleLogin}
                             disabled={isLoading}
                         />
@@ -108,9 +92,7 @@ export default function Login({ navigation }) {
                         </Text>
 
                         <TouchableOpacity
-                            onPress={() =>
-                                navigation.navigate('Register')
-                            }
+                            onPress={() => navigation.navigate('Register')}
                         >
                             <Text style={styles.registerLink}>
                                 {' '}Cadastre-se!
