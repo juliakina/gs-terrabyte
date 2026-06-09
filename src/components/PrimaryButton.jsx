@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignSelf: 'center',
         marginTop: 8,
-        width:100,
+        width: '100%',
     },
     disabled: {
         opacity: 0.6,
