@@ -11,31 +11,28 @@ import {
 import { colors } from '../constants/colors';
 import { AppHeader } from '../components/AppHeader';
 import { AppFooter } from '../components/AppFooter';
-import { SoilCard } from '../components/SoilCard';
-import { fetchSoilList } from '../services/soilService';
+import { PlantingCard } from '../components/PlantingCard';
+import { fetchPlantingsBySoil } from '../services/soilService';
 
-export default function Soil({ navigation }) {
-    const [soils, setSoils] = useState([]);
+export default function SoilPlantings({ navigation, route }) {
+    const { soilId, soilName } = route.params;
+
+    const [plantings, setPlantings] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const unsubscribe = navigation.addListener(
-            'focus',
-            loadSoils
-        );
+        loadPlantingsBySoil();
+    }, [soilId]);
 
-        return unsubscribe;
-    }, [navigation]);
-
-    async function loadSoils() {
+    async function loadPlantingsBySoil() {
         try {
             setIsLoading(true);
 
-            const data = await fetchSoilList();
+            const data = await fetchPlantingsBySoil(soilId);
 
-            setSoils(data);
+            setPlantings(data);
         } catch (error) {
-            setSoils([]);
+            setPlantings([]);
         } finally {
             setIsLoading(false);
         }
@@ -54,11 +51,11 @@ export default function Soil({ navigation }) {
 
                     <View>
                         <Text style={styles.title}>
-                            Solos
+                            Plantios por Solo
                         </Text>
 
                         <Text style={styles.subtitle}>
-                            Consulte os tipos de solo disponíveis
+                            Solo selecionado: {soilName}
                         </Text>
                     </View>
                 </View>
@@ -69,15 +66,24 @@ export default function Soil({ navigation }) {
                         color={colors.primary}
                         style={styles.loading}
                     />
+                ) : plantings.length === 0 ? (
+                    <View style={styles.emptyCard}>
+                        <Text style={styles.emptyTitle}>
+                            Nenhum plantio encontrado
+                        </Text>
+
+                        <Text style={styles.emptyText}>
+                            Não há plantios cadastrados para este tipo de solo.
+                        </Text>
+                    </View>
                 ) : (
-                    soils.map((soil) => (
-                        <SoilCard
-                            key={soil.id}
-                            name={soil.nome}
+                    plantings.map((planting) => (
+                        <PlantingCard
+                            key={planting.id}
+                            name={planting.nome}
                             onPress={() =>
-                                navigation.navigate('SoilPlantings', {
-                                    soilId: soil.id,
-                                    soilName: soil.nome,
+                                navigation.navigate('PlantingDetails', {
+                                    plantingId: planting.id,
                                 })
                             }
                         />
@@ -130,5 +136,28 @@ const styles = StyleSheet.create({
 
     loading: {
         marginTop: 40,
+    },
+
+    emptyCard: {
+        backgroundColor: colors.white,
+        borderRadius: 18,
+        padding: 24,
+        borderWidth: 1,
+        borderColor: colors.border,
+        alignItems: 'center',
+    },
+
+    emptyTitle: {
+        fontSize: 18,
+        fontWeight: '700',
+        color: colors.text,
+        marginBottom: 6,
+    },
+
+    emptyText: {
+        fontSize: 14,
+        color: colors.mutedText,
+        textAlign: 'center',
+        lineHeight: 20,
     },
 });

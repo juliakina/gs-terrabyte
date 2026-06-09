@@ -13,6 +13,7 @@ import CompatibilityAnalysis from '../screens/CompatibilityAnalysis';
 import CreateTerrain from '../screens/CreateTerrain';
 import TerrainDetails from '../screens/TerrainDetails';
 import PlantingDetails from '../screens/PlantingDetails';
+import SoilPlantings from '../screens/SoilPlantings';
 
 const Drawer = createDrawerNavigator();
 
@@ -137,6 +138,15 @@ export default function DrawerRoutes() {
             <Drawer.Screen
                 name="PlantingDetails"
                 component={PlantingDetails}
+                options={{
+                    drawerItemStyle: {
+                        display: 'none',
+                    },
+                }}
+            />
+            <Drawer.Screen
+                name="SoilPlantings"
+                component={SoilPlantings}
                 options={{
                     drawerItemStyle: {
                         display: 'none',
